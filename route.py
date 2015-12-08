@@ -121,18 +121,17 @@ route = [
         #[r'^(?P<private>pm?\s+)?(?P<to>(?:@[a-z0-9_-]+[,\s]*)+)?(?:(?P<taglist>(?:[ \t]*\*[ \t]*\S+)+)\s+)?(?P<text>.*)$', posts.add_post],
 
         # point style tags
-        [r'^\s*(?P<private>pm?\s*)?(?P<taglist>\*\*(?:[^,\*\r\n]+[ \t]*[\*,][ \t]*)*[^,\r\n]+(?:[\r\n]+|\*\*))\s*(?P<to>(?:@[a-zA-Z0-9_-]+[, \t]*)+)\s*(?P<text>.+)?$', posts.add_post],
-        [r'^\s*(?P<private>pm?\s*)?(?P<taglist>\*\*(?:[^,\*\r\n]+[ \t]*[\*,][ \t]*)*[^,\r\n]+(?:[\r\n]+|\*\*))\s*(?P<text>.+)?$', posts.add_post],
-        [r'^\s*(?P<private>pm?\s*)?(?P<to>(?:@[a-zA-Z0-9_-]+[, \t]*)+)\s*(?P<taglist>\*\*(?:[^,\*\r\n]+[ \t]*[\*,][ \t]*)*[^,\r\n]+(?:[\r\n]+|\*\*))\s*(?P<text>.+)?$', posts.add_post],
-        [r'^\s*(?P<private>pm?\s*)?(?P<to>(?:@[a-zA-Z0-9_-]+[, \t]*)+)\s*(?P<text>.+)?$', posts.add_post],
+        [r'^\s*((?P<readonly>ro?\s*)|(?P<private>pm?\s*))?(?P<taglist>\*\*(?:[^,\*\r\n]+[ \t]*[\*,][ \t]*)*[^,\r\n]+(?:[\r\n]+|\*\*))\s*(?P<to>(?:@[a-zA-Z0-9_-]+[, \t]*)+)\s*(?P<text>.+)?$', posts.add_post],
+        [r'^\s*((?P<readonly>ro?\s*)|(?P<private>pm?\s*))?(?P<taglist>\*\*(?:[^,\*\r\n]+[ \t]*[\*,][ \t]*)*[^,\r\n]+(?:[\r\n]+|\*\*))\s*(?P<text>.+)?$', posts.add_post],
+        [r'^\s*((?P<readonly>ro?\s*)|(?P<private>pm?\s*))?(?P<to>(?:@[a-zA-Z0-9_-]+[, \t]*)+)\s*(?P<taglist>\*\*(?:[^,\*\r\n]+[ \t]*[\*,][ \t]*)*[^,\r\n]+(?:[\r\n]+|\*\*))\s*(?P<text>.+)?$', posts.add_post],
+        [r'^\s*((?P<readonly>ro?\s*)|(?P<private>pm?\s*))?(?P<to>(?:@[a-zA-Z0-9_-]+[, \t]*)+)\s*(?P<text>.+)?$', posts.add_post],
 
         # juick style tags
-        [r'^\s*(?P<private>pm?\s*)?(?P<taglist>(?:\*[ \t]*\S+[ \t]*)+)\s*(?P<to>(?:@[a-zA-Z0-9_-]+[, \t]*)+)\s*(?P<text>.+)$', posts.add_post],
-        [r'^\s*(?P<private>pm?\s*)?(?P<taglist>(?:\*[ \t]*\S+[ \t]*)+)\s*(?P<text>.+)$', posts.add_post],
-        [r'^\s*(?P<private>pm?\s*)?(?P<to>(?:@[a-zA-Z0-9_-]+[, \t]*)+)\s*(?P<taglist>(?:\*[ \t]*\S+[ \t]*)+)\s*(?P<text>.+)$', posts.add_post],
+        [r'^\s*((?P<readonly>ro?\s*)|(?P<private>pm?\s*))?(?P<taglist>(?:\*[ \t]*\S+[ \t]*)+)\s*(?P<to>(?:@[a-zA-Z0-9_-]+[, \t]*)+)\s*(?P<text>.+)$', posts.add_post],
+        [r'^\s*((?P<readonly>ro?\s*)|(?P<private>pm?\s*))?(?P<taglist>(?:\*[ \t]*\S+[ \t]*)+)\s*(?P<text>.+)$', posts.add_post],
+        [r'^\s*((?P<readonly>ro?\s*)|(?P<private>pm?\s*))?(?P<to>(?:@[a-zA-Z0-9_-]+[, \t]*)+)\s*(?P<taglist>(?:\*[ \t]*\S+[ \t]*)+)\s*(?P<text>.+)$', posts.add_post],
+        [r'^\s*((?P<readonly>ro?\s*)|(?P<private>pm?\s*))?(?P<to>(?:@[a-zA-Z0-9_-]+[, \t]*)+)(?P<text>.+)$', posts.add_post],
 
-        [r'^\s*(?P<private>pm?\s*)?(?P<to>(?:@[a-zA-Z0-9_-]+[, \t]*)+)(?P<text>.+)$', posts.add_post],
-
-        [r'^\s*(?P<private>pm?\s+)?(?P<text>.+)$', posts.add_post]
+        [r'^\s*((?P<readonly>ro?\s+)|(?P<private>pm?\s+))?(?P<text>.+)$', posts.add_post]
     ]}
 ]

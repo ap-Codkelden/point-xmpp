@@ -87,13 +87,13 @@ def private_posts(show=False, offset=None, limit=None):
 
     return xmpp_template('posts', posts=plist)
 
-def add_post(text, taglist=None, to=None, private=False):
+def add_post(text, taglist=None, to=None, readonly=False, private=False):
     taglist = parse_tags(taglist)
     if to:
         text = '%s %s' % (to.strip(), text.strip())
     to = parse_logins(to)
     try:
-        post_id = posts.add_post(text, tags=taglist, to=to, private=private)
+        post_id = posts.add_post(text, tags=taglist, to=to, readonly=readonly, private=private)
     except PostTextError:
         return xmpp_template('post_inadmissible')
     except UserNotFound, e:
@@ -102,12 +102,12 @@ def add_post(text, taglist=None, to=None, private=False):
         return xmpp_template('user_post_denied', login=e.message)
     except PostLimitError:
         return xmpp_template('post_interval_exceeded')
-    return xmpp_template('msg_post_sent', post_id=post_id, private=private)
+    return xmpp_template('msg_post_sent', post_id=post_id, readonly=readonly, private=private)
 
-def edit_post(post_id, text, taglist=None, private=None):
+def edit_post(post_id, text, taglist=None, readonly=readonly, private=None):
     taglist = parse_tags(taglist)
     try:
-        posts.edit_post(post_id, text, taglist, private)
+        posts.edit_post(post_id, text, taglist, readonly, private)
     except (SubscribeError, PostAuthorError):
         return xmpp_template('post_denied', post_id=post_id)
     except PostUpdateError:
