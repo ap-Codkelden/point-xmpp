@@ -1,2 +1,2 @@
-P{% if private %}rivate p{% endif %}ost #{{post_id}} is sent.
+{% if private %}Private {% endif %}{% elif readonly %}Readonly {% endif %}post #{{post_id}} is sent.
 https://{{settings.domain}}/{{post_id}}
